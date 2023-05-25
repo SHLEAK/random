@@ -1,3 +1,4 @@
+#!/usr/local/bin/python3.9
 import logging
 import argparse
 from scapy.all import RadioTap, Dot11, Dot11Deauth, Ether, sniff, sendp
@@ -44,7 +45,7 @@ def setup_logging():
 if __name__ == "__main__":
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="Pentesting script for deauthentication attacks.")
-    parser.add_argument("-i", "--interface", type=str, help="Network interface to use")
+    parser.add_argument("-i", "--interface", type=str, default="en0", help="Network interface to use")
     parser.add_argument("-d", "--duration", type=int, default=60, help="Duration of sniffing in seconds")
     parser.add_argument("-c", "--packet-count", type=int, default=100, help="Number of deauthentication packets to send")
     parser.add_argument("-p", "--interval", type=float, default=0.1, help="Interval between deauthentication packets")
