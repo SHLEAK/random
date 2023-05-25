@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3.9
 import logging
 import argparse
-from scapy.all import RadioTap, Dot11, Dot11Deauth, Ether, sniff, sendp
+from scapy.all import conf, RadioTap, Dot11, Dot11Deauth, Ether, sniff, sendp
 import concurrent.futures
 import time
 
