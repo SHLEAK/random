@@ -12,7 +12,7 @@ def die(target_mac, access_point_mac):
         interface = args.interface
         packet_count = args.packet_count
         interval = args.interval
-        conf.iface = interface
+        conf.iface = interface  # Use the imported `conf` object here
         pkt = (
             RadioTap()
             / Dot11(addr1=target_mac, addr2=access_point_mac, addr3=access_point_mac)
