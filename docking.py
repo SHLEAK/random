@@ -39,16 +39,36 @@ def maccy():
 
 
 def setup_logging():
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+    logging.basicConfig(
+        level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    )
 
 
 if __name__ == "__main__":
     # Parse command-line arguments
-    parser = argparse.ArgumentParser(description="Pentesting script for deauthentication attacks.")
-    parser.add_argument("-i", "--interface", type=str, default="en0", help="Network interface to use")
-    parser.add_argument("-d", "--duration", type=int, default=60, help="Duration of sniffing in seconds")
-    parser.add_argument("-c", "--packet-count", type=int, default=100, help="Number of deauthentication packets to send")
-    parser.add_argument("-p", "--interval", type=float, default=0.1, help="Interval between deauthentication packets")
+    parser = argparse.ArgumentParser(
+        description="Pentesting script for deauthentication attacks."
+    )
+    parser.add_argument(
+        "-i", "--interface", type=str, default="en0", help="Network interface to use"
+    )
+    parser.add_argument(
+        "-d", "--duration", type=int, default=60, help="Duration of sniffing in seconds"
+    )
+    parser.add_argument(
+        "-c",
+        "--packet-count",
+        type=int,
+        default=100,
+        help="Number of deauthentication packets to send",
+    )
+    parser.add_argument(
+        "-p",
+        "--interval",
+        type=float,
+        default=0.1,
+        help="Interval between deauthentication packets",
+    )
     args = parser.parse_args()
 
     # Set up logging
@@ -61,7 +81,9 @@ if __name__ == "__main__":
                 try:
                     executor.submit(die, device, wifi)
                 except Exception as e:
-                    logging.exception("An exception occurred in submitting task: %s", str(e))
+                    logging.exception(
+                        "An exception occurred in submitting task: %s", str(e)
+                    )
                     time.sleep(200)
                     executor.submit(die, device, wifi)
 
