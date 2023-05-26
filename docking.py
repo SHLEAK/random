@@ -1,9 +1,9 @@
 from scapy.all import *
-import concurrent.futures
-import time
-import subprocess
-import re
 import argparse
+import concurrent.futures
+import re
+import subprocess
+import time
 
 def deauth(target_mac, access_point_mac, interface, packet_count, interval):
     """
