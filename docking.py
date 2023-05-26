@@ -72,14 +72,14 @@ def main():
         "--count",
         type=int,
         default=100,
-        help="Number of deauthentication packets to send per attack (default: 40)",
+        help="Number of deauthentication packets to send per attack (default: 100)",
     )
     parser.add_argument(
         "-d",
         "--interval",
         type=float,
         default=0.1,
-        help="Interval between deauthentication packets (default: 0.001)",
+        help="Interval between deauthentication packets (default: 0.1)",
     )
     args = parser.parse_args()
     disconnect_cmd = f"networksetup -setairportpower {args.interface} off"
