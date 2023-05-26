@@ -29,7 +29,7 @@ def everything():
         mac_matches = re.findall(mac_regex, line)
         if mac_matches:
             mac_addresses.extend(mac_matches)
-    return mac_addresses
+    return set(mac_addresses)
 maccy=everything()
 with concurrent.futures.ThreadPoolExecutor(max_workers=99999) as executor:
     for wifi in maccy:
