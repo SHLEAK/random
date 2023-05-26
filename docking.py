@@ -29,10 +29,6 @@ def everything():
         mac_matches = re.findall(mac_regex, line)
         if mac_matches:
             mac_addresses.extend(mac_matches)
-    disconnect_cmd = "networksetup -setairportpower en0 off"
-    subprocess.run(disconnect_cmd, shell=True)
-    disconnect_cmd = "networksetup -setairportpower en0 on"
-    subprocess.run(disconnect_cmd, shell=True)
     return set(mac_addresses)
 maccy=everything()
 with concurrent.futures.ThreadPoolExecutor(max_workers=800) as executor:
