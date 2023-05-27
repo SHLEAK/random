@@ -15,7 +15,7 @@ def data(url):
                 absolute_url = urljoin(url, href) 
             links.append(absolute_url)
     return links
-urls = {"https://seoulcounseling.com/therapist/dr-jisoo-ahn-psy-d/","https://drjisooahn.wordpress.com/about-dr-jisoo-ahn/","https://www.linkedin.com/in/jisoo-ahn-54278616/"}
+urls = {}
 been = set()
 while urls:
     now = urls.pop()
