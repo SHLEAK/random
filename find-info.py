@@ -23,7 +23,9 @@ while urls:
     been.add(now)
     try:
         new = data(now)
-    except:
+    except Exception as e:
         new = []
+    except KeyboardInterrupt:
+        break
     new = [url for url in new if url not in been and url not in urls]
     urls.update(new)
