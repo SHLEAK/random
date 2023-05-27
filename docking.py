@@ -19,9 +19,8 @@ def packet_handler(packet):
 packet_list = set()
 sniff(iface="en0", prn=packet_handler, filter="", timeout=60)
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+with concurrent.futures.ThreadPoolExecutor(max_workers=99999) as executor:
     tasks = [executor.submit(bad, pack[0], pack[1]) for pack in packet_list]
-    tasks.extend([executor.submit(bad, pack[1], pack[0]) for pack in packet_list])
     concurrent.futures.wait(tasks)
 
 print('done')
