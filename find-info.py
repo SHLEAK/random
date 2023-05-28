@@ -3,7 +3,7 @@ from urllib.parse import urljoin
 import requests
 import webbrowser
 def data(url):
-    response = requests.get(url)
+    response = requests.get(url,timeout=60)
     response.raise_for_status() 
     soup = BeautifulSoup(response.text, 'html.parser')
     links = []
@@ -16,7 +16,7 @@ def data(url):
                 absolute_url = urljoin(url, href) 
             links.append(absolute_url)
     return links
-urls = {"https://stackoverflow.com"}
+urls = {"https://genderdysphoria.fyi"}
 been = set()
 while urls:
     now = urls.pop()
