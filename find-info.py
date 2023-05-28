@@ -1,6 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
+import requests
+import webbrowser
 def data(url):
     response = requests.get(url)
     response.raise_for_status() 
@@ -15,11 +16,12 @@ def data(url):
                 absolute_url = urljoin(url, href) 
             links.append(absolute_url)
     return links
-urls = {}
+urls = {"https://stackoverflow.com"}
 been = set()
 while urls:
     now = urls.pop()
     print(now)
+    webbrowser.open(now)
     been.add(now)
     try:
         new = data(now)
