@@ -12,13 +12,13 @@ def make(min_length, max_length):
             yield password
 
 def check(password):
-    file_path = '/Users/lung/Desktop/psychologicalevaluation.pdf'
+    file_path = '/Users/lung/Documents/psychologicalevaluation.pdf'
     pdf_reader = PyPDF2.PdfReader(file_path)
     wrong = pdf_reader.decrypt("")
     if pdf_reader.is_encrypted:
         if wrong != pdf_reader.decrypt(password):
             print(f"Password found: {password}")
-            raise SystemExit(f"Password found: {password}")
+            raise KeyboardInterrupt
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(check, make(11, 20))
