@@ -20,6 +20,8 @@ def check(password):
         if wrong != pdf_reader.decrypt(password):
             print(f"Password found: {password}")
             sys.exit(0)
+        else:
+            print(f"Password not found: {password}")
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(check, make(11, 20))
