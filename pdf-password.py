@@ -19,7 +19,7 @@ def check(password):
     if pdf_reader.is_encrypted:
         if wrong != pdf_reader.decrypt(password):
             print(f"Password found: {password}")
-            raise KeyboardInterrupt
+            sys.exit()
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(check, make(11, 20))
