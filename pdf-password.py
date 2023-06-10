@@ -2,6 +2,7 @@ import PyPDF2
 import string
 import itertools
 import concurrent.futures
+import sys
 
 def make(min_length, max_length):
     character_set = string.ascii_letters + string.digits + string.punctuation
@@ -18,7 +19,7 @@ def check(password):
     if pdf_reader.is_encrypted:
         if wrong != pdf_reader.decrypt(password):
             print(f"Password found: {password}")
-            raise KeyboardInterrupt
+            sys.exit(0)
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.map(check, make(11, 20))
