@@ -4,7 +4,7 @@ import string
 from concurrent.futures import ThreadPoolExecutor
 def emailMaker():
     characters = string.ascii_letters + string.digits + '._%+-'
-    domains = ['@gmail.com', '@icloud.com', '@naver.com', '@tsicscommunity.com']
+    domains = ['@gmail.com', '@icloud.com', '@naver.com']
     for length in range(6, 20):
         permutations = itertools.permutations(characters, length)
         for permutation in permutations:
