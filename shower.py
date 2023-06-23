@@ -81,15 +81,11 @@ class Server(HTTPServer):
     def handle_error(self, request, client_address):
         # Override the default error handling to avoid unwanted noise in the console
         pass
-def get_ip_address():
-    command = "ifconfig en0 | grep 'inet ' | awk '{print $2}'"
-    output = subprocess.check_output(command, shell=True, universal_newlines=True)
-    return output.strip()
 def run_server(server_class=Server, handler_class=RequestHandler, port=80):
     try:
         server_address = ("", port)
         httpd = server_class(server_address, handler_class)
-        print("start on http://{}".format(get_ip_address()))
+        print("start")
         httpd.serve_forever()
     except KeyboardInterrupt:
         httpd.server_close()
