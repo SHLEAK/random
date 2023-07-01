@@ -58,7 +58,7 @@ class MainWindow(QMainWindow):
         current_tab = self.tab_widget.currentWidget()
         url = self.url_bar.text()
         if not url.startswith("http://") and not url.startswith("https://"):
-            url = "http://" + url  # Add the default protocol (http://) if the URL has no protocol
+            url = "http://" + url
         current_tab.web_view.load(QUrl(url))
     def update_url_bar(self):
         current_tab = self.tab_widget.currentWidget()
@@ -74,7 +74,7 @@ class MainWindow(QMainWindow):
         current_tab = self.tab_widget.currentWidget()
         current_tab.web_view.reload()
     def go_home(self):
-        default_home_url = "https://www.google.com"  # Change this to your desired default home page URL
+        default_home_url = "https://www.google.com"
         current_tab = self.tab_widget.currentWidget()
         current_tab.web_view.load(QUrl(default_home_url))
 if __name__ == "__main__":
