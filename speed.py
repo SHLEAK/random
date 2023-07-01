@@ -56,10 +56,11 @@ class MainWindow(QMainWindow):
         self.tab_widget.removeTab(index)
     def load_url(self):
         current_tab = self.tab_widget.currentWidget()
-        url = self.url_bar.text()
-        if not url.startswith("http://") and not url.startswith("https://"):
-            url = "http://" + url
-        current_tab.web_view.load(QUrl(url))
+        url = self.url_bar.text()    
+        try:
+            current_tab.web_view.load(QUrl(url))
+        except Exception as e:
+            current_tab.web_view.load(QUrl("about:blank"))
     def update_url_bar(self):
         current_tab = self.tab_widget.currentWidget()
         url = current_tab.web_view.url().toString()
