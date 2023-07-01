@@ -75,12 +75,9 @@ class MainWindow(QMainWindow):
         url = self.url_bar.text()
 
         if not url.startswith("http://") and not url.startswith("https://"):
-            # If the URL doesn't have a protocol, treat it as a search query and redirect to Google search.
-            search_url = QUrl("https://www.google.com/search?q=" + url)
-            current_tab.web_view.load(search_url)
-        else:
-            # If the URL has a protocol, load it directly.
-            current_tab.web_view.load(QUrl(url))
+            url = "http://" + url  # Add the default protocol (http://) if the URL has no protocol
+
+        current_tab.web_view.load(QUrl(url))
 
     def update_url_bar(self):
         current_tab = self.tab_widget.currentWidget()
