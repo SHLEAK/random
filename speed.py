@@ -97,8 +97,9 @@ class MainWindow(QMainWindow):
         current_tab.web_view.reload()
 
     def go_home(self):
+        default_home_url = "https://www.google.com"  # Change this to your desired default home page URL
         current_tab = self.tab_widget.currentWidget()
-        current_tab.web_view.load(QUrl("https://www.google.com"))
+        current_tab.web_view.load(QUrl(default_home_url))
 
 if __name__ == "__main__":
     app = QApplication([])
