@@ -15,8 +15,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Browser")
-        self.setGeometry(100, 100, 2278, 1473)
-        self.setFixedSize(2278, 1473)
+        self.setGeometry(100, 100, 800, 600)
+        self.setFixedSize(800, 600)
         self.tab_widget = QTabWidget()
         self.tab_widget.setTabsClosable(True)
         self.tab_widget.tabCloseRequested.connect(self.close_tab)
