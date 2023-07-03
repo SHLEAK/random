@@ -38,6 +38,8 @@
   </style>
 </head>
 <body>
+<div id="vocabularyList"></div>
+<br><br>
 <div id="questionsContainer"></div>
 <script>
 const stuff = `allay
@@ -288,11 +290,17 @@ for (var i = 0; i < entries.length; i++) {
   dictionary[key] = value;
 }
 
+
+  var vocabularyList = document.getElementById('vocabularyList');
   var questionsContainer = document.getElementById('questionsContainer');
   var inputElements = [];
 
   var words = Object.keys(dictionary);
   var shuffledWords = shuffleArray(words);
+
+  // Create vocabulary list
+  var vocabularyWords = shuffledWords.join(' ');
+  vocabularyList.textContent = vocabularyWords;
 
   for (var i = 0; i < 50; i++) {
     var word = shuffledWords[i];
@@ -343,22 +351,22 @@ for (var i = 0; i < entries.length; i++) {
   }
 
   function checkAnswer(event) {
-  var inputElement = event.target;
-  var userInput = inputElement.value.trim().toLowerCase();
-  var questionNumber = parseInt(inputElement.id.slice(1));
-  var questionIndex = questionNumber - 1;
-  var word = shuffledWords[questionIndex];
+    var inputElement = event.target;
+    var userInput = inputElement.value.trim().toLowerCase();
+    var questionNumber = parseInt(inputElement.id.slice(1));
+    var questionIndex = questionNumber - 1;
+    var word = shuffledWords[questionIndex];
 
-  if (userInput === word) {
-    setResultIndicator(inputElement, 'green');
-  } else if (userInput === '') {
-    setResultIndicator(inputElement, ''); // No color
-  } else if (dictionary.hasOwnProperty(userInput)) {
-    setResultIndicator(inputElement, 'red');
-  } else {
-    setResultIndicator(inputElement, 'yellow');
+    if (userInput === word) {
+      setResultIndicator(inputElement, 'green');
+    } else if (userInput === '') {
+      setResultIndicator(inputElement, ''); // No color
+    } else if (dictionary.hasOwnProperty(userInput)) {
+      setResultIndicator(inputElement, 'red');
+    } else {
+      setResultIndicator(inputElement, 'yellow');
+    }
   }
-}
 
   function setResultIndicator(inputElement, color) {
     var inputInfo = inputElements.find(function(inputInfo) {
@@ -381,9 +389,10 @@ for (var i = 0; i < entries.length; i++) {
   .result-indicator.green { background-color: green; }
   .result-indicator.red { background-color: red; }
   .result-indicator.yellow { background-color: yellow; }
+
+  #vocabularyList {
+    white-space: pre-wrap;
+  }
 </style>
-
-
-</script>
 </body>
 </html>
