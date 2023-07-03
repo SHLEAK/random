@@ -296,14 +296,14 @@ for (var i = 0; i < entries.length; i++) {
   var inputElements = [];
 
   var words = Object.keys(dictionary);
-  var shuffledWords = shuffleArray(words);
+  var vocabularyWords = words.join(' ');
+  var shuffledQuestionWords = shuffleArray(words);
 
   // Create vocabulary list
-  var vocabularyWords = shuffledWords.join(' ');
   vocabularyList.textContent = vocabularyWords;
 
   for (var i = 0; i < 50; i++) {
-    var word = shuffledWords[i];
+    var word = shuffledQuestionWords[i];
     var definition = dictionary[word];
 
     var questionNumber = i + 1;
@@ -355,7 +355,7 @@ for (var i = 0; i < entries.length; i++) {
     var userInput = inputElement.value.trim().toLowerCase();
     var questionNumber = parseInt(inputElement.id.slice(1));
     var questionIndex = questionNumber - 1;
-    var word = shuffledWords[questionIndex];
+    var word = shuffledQuestionWords[questionIndex];
 
     if (userInput === word) {
       setResultIndicator(inputElement, 'green');
@@ -394,5 +394,7 @@ for (var i = 0; i < entries.length; i++) {
     white-space: pre-wrap;
   }
 </style>
+
+
 </body>
 </html>
