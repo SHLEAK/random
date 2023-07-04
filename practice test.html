@@ -1,6 +1,7 @@
 <html>
-<title>Questionnaire</title>
-  <style>
+  <head>
+    <title>Questionnaire</title>
+    <style>
     body {
       font-family: Arial, sans-serif;
     }
@@ -36,12 +37,13 @@
       border-radius: 5px;
     }
   </style>
-</head>
-<body>
-<div id="vocabularyList"></div>
-<br><br>
-<div id="questionsContainer"></div>
-<script>
+  </head>
+  <body>
+    <div id="vocabularyList"></div>
+    <br>
+      <br>
+        <div id="questionsContainer"></div>
+        <script>
 const stuff = `allay
 (v.) to calm or pacify, set to rest; to lessen or relieve (2)
 
@@ -376,9 +378,9 @@ for (var i = 0; i < entries.length; i++) {
     var resultIndicator = inputInfo.resultIndicator;
     resultIndicator.style.backgroundColor = color;
   }
-</script>
 
-<style>
+        </script>
+        <style>
   .result-indicator {
     display: inline-block;
     width: 10px;
@@ -394,5 +396,5 @@ for (var i = 0; i < entries.length; i++) {
     white-space: pre-wrap;
   }
 </style>
-</body>
-</html>
+      </body>
+    </html>
