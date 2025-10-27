@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36" version="28.2.8">
+  <diagram name="WebRTC Flow" id="7MINS_vlNGAHRwbFxNub">
+    <mxGraphModel dx="1551" dy="992" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-24" value="Peer A (Browser)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="20" y="110" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-25" value="Signaling + STUN/TURN Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="240" y="30" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-26" value="Peer B (Browser)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="550" y="110" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-27" value="1️⃣ SDP Offer created (includes ICE candidates)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="20" y="210" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-28" value="2️⃣ Offer sent securely via HTTPS to Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="260" y="210" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-29" value="3️⃣ Server forwards to Peer B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="500" y="210" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-30" value="4️⃣ Peers exchange ICE candidates (UDP/TCP through STUN/TURN if needed)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="20" y="260" width="380" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-31" value="5️⃣ DTLS handshake begins → both peers exchange self-signed certs to verify identity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="20" y="320" width="500" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-32" value="6️⃣ SRTP encryption derived from DTLS keys → data now end-to-end encrypted" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="20" y="380" width="500" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-33" value="7️⃣ Secure Data Channel open (messages / files / streams encrypted)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="20" y="440" width="500" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-34" value="Offer / Answer" style="endArrow=classic;html=1;strokeWidth=2" edge="1" parent="1" source="ykWD1B02bNpxdpBGQpKH-24" target="ykWD1B02bNpxdpBGQpKH-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-35" value="Forward SDP" style="endArrow=classic;html=1;strokeWidth=2" edge="1" parent="1" source="ykWD1B02bNpxdpBGQpKH-25" target="ykWD1B02bNpxdpBGQpKH-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ykWD1B02bNpxdpBGQpKH-36" value="DTLS + SRTP Secure Channel" style="endArrow=classic;html=1;strokeColor=#82b366;strokeWidth=3;fontColor=#006600" edge="1" parent="1" source="ykWD1B02bNpxdpBGQpKH-24" target="ykWD1B02bNpxdpBGQpKH-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
